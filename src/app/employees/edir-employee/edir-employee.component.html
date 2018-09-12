@@ -1,0 +1,27 @@
+<div class="list-group">
+  <div class="list-group-item">
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="employEdit.name" class="form-control" />
+  </div>
+  <div class="list-group-item">
+    <label>Edad:</label>
+    <input type="text" [(ngModel)]="employEdit.age" class="form-control" />
+  </div>
+  <div class="list-group-item">
+    <label>Cargo:</label>
+    <select class="form-control" [(ngModel)]="employEdit.charge">
+      <option value="Engineer">Ingeniero</option>
+      <option value="Manager">Gerente</option>
+      <option value="Secretary">Secretario</option>
+    </select>
+  </div>
+  <div class="list-group-item">
+    <label>Estado:</label>
+    <select class="form-control" [(ngModel)]="employEdit.state">
+      <option value="active">Activo</option>
+      <option value="inactive">Inactivo</option>      
+    </select>
+  </div>
+</div>
+
+<input type="button" class="btn" (click)="save()" value="Guardar"/> 
