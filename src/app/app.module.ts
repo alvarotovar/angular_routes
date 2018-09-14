@@ -11,12 +11,17 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { FormsModule } from '@angular/forms';
 import { EmployeesService } from './services/employees.service';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes : Routes = [
   { path : '', component : HomeComponent},
-  { path : 'employees', component : EmployeeComponent, children : [
-    {path: ':id', component: EmployeeDetailComponent},
-    {path: ':id/edit', component: EdirEmployeeComponent}
+  
+  { path : 'employees',
+    canActivate : [AuthGuardService],
+      component : EmployeeComponent, children : [
+      {path: ':id', component: EmployeeDetailComponent},
+      {path: ':id/edit', component: EdirEmployeeComponent}
   ]},
   { path : "maintenance", component : MaintenanceComponent}
 ]
@@ -35,7 +40,7 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [EmployeesService],
+  providers: [EmployeesService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
